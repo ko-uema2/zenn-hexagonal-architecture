@@ -1,12 +1,8 @@
 import * as fs from "node:fs";
-import * as readline from "node:readline";
+import { VoiceInterface } from "./voiceInterface";
 
 const RECORD_FILE = "./storage/record.json";
-
-const rl = readline.createInterface({
-	input: process.stdin,
-	output: process.stdout,
-});
+const voiceInterface = new VoiceInterface();
 
 let record: { dog: number; cat: number; unknown: number };
 if (fs.existsSync(RECORD_FILE)) {
@@ -16,8 +12,7 @@ if (fs.existsSync(RECORD_FILE)) {
 	record = { dog: 0, cat: 0, unknown: 0 };
 }
 
-rl.question("鳴き声を入力してください: ", (answer) => {
-	const input = answer.trim();
+voiceInterface.hearVoice("鳴き声を聞き取っています: ", (input) => {
 	if (
 		input === "ワン" ||
 		input === "わんわん" ||
@@ -34,8 +29,7 @@ rl.question("鳴き声を入力してください: ", (answer) => {
 		record.cat += 1;
 	} else {
 		record.unknown += 1;
-		console.log("知らない鳴き声を受け取りました");
+		voiceInterface.playSound("知らない鳴き声を受け取りました");
 	}
 	fs.writeFileSync(RECORD_FILE, JSON.stringify(record, null, 2), "utf-8");
-	rl.close();
 });
