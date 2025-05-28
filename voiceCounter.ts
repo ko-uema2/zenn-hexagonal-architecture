@@ -7,31 +7,30 @@ export class VoiceCounter {
 		this.record = record;
 	}
 
-	increment(input: string): {
-		record: RecordType;
-		updatedProperty: keyof RecordType;
-	} {
+	// 鳴き声から動物種別を判定
+	static judgeAnimal(input: string): keyof RecordType {
 		if (
 			input === "ワン" ||
 			input === "わんわん" ||
 			input === "ワンワン" ||
 			input === "わん"
 		) {
-			this.record.dog += 1;
-			return { record: { ...this.record }, updatedProperty: "dog" };
+			return "dog";
 		}
-
 		if (
 			input === "ニャン" ||
 			input === "にゃん" ||
 			input === "にゃんにゃん" ||
 			input === "にゃーん"
 		) {
-			this.record.cat += 1;
-			return { record: { ...this.record }, updatedProperty: "cat" };
+			return "cat";
 		}
+		return "unknown";
+	}
 
-		this.record.unknown += 1;
-		return { record: { ...this.record }, updatedProperty: "unknown" };
+	// recordを更新
+	incrementAnimal(animal: keyof RecordType): RecordType {
+		this.record[animal] += 1;
+		return { ...this.record };
 	}
 }

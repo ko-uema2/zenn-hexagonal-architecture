@@ -10,9 +10,10 @@ const record = recordStorage.load();
 const voiceCounter = new VoiceCounter(record);
 
 voiceInterface.hearVoice("鳴き声を入力してください: ", (input: string) => {
-	const result = voiceCounter.increment(input);
-	if (result.updatedProperty === "unknown") {
+	const animal = VoiceCounter.judgeAnimal(input);
+	const updatedRecord = voiceCounter.incrementAnimal(animal);
+	if (animal === "unknown") {
 		voiceInterface.playSound("知らない鳴き声を受け取りました");
 	}
-	recordStorage.save(result.record);
+	recordStorage.save(updatedRecord);
 });
