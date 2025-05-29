@@ -7,8 +7,8 @@ export class VoiceCounter {
 		this.record = record;
 	}
 
-	// 鳴き声から動物種別を判定
-	static judgeAnimal(input: string): keyof RecordType {
+	// 鳴き声から動物種別を判定（privateメソッド化）
+	private judgeAnimal(input: string): keyof RecordType {
 		if (
 			input === "ワン" ||
 			input === "わんわん" ||
@@ -17,6 +17,7 @@ export class VoiceCounter {
 		) {
 			return "dog";
 		}
+
 		if (
 			input === "ニャン" ||
 			input === "にゃん" ||
@@ -25,12 +26,17 @@ export class VoiceCounter {
 		) {
 			return "cat";
 		}
+
 		return "unknown";
 	}
 
-	// recordを更新
-	incrementAnimal(animal: keyof RecordType): RecordType {
+	// recordを更新（鳴き声を直接受け取り、内部でjudgeAnimalを利用）
+	incrementAnimal(input: string): {
+		record: RecordType;
+		updatedAnimal: keyof RecordType;
+	} {
+		const animal = this.judgeAnimal(input);
 		this.record[animal] += 1;
-		return { ...this.record };
+		return { record: { ...this.record }, updatedAnimal: animal };
 	}
 }
