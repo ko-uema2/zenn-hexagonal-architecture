@@ -1,5 +1,6 @@
+import { AnimalJudge } from "./animalJudge";
 import { RecordStorage } from "./recordStorage";
-import { VoiceCounter } from "./voiceCounter";
+import { AnimalEvent, VoiceCounter } from "./voiceCounter";
 import { VoiceInterface } from "./voiceInterface";
 import { VoiceResultHandler } from "./voiceResultHandler";
 
@@ -7,6 +8,7 @@ const voiceInterface = new VoiceInterface();
 const RECORD_FILE = "./storage/record.json";
 const recordStorage = new RecordStorage(RECORD_FILE);
 const record = recordStorage.load();
+const animalJudge = new AnimalJudge();
 const voiceCounter = new VoiceCounter(record);
 const voiceResultHandler = new VoiceResultHandler(
 	voiceInterface,
@@ -14,6 +16,10 @@ const voiceResultHandler = new VoiceResultHandler(
 );
 
 voiceInterface.hearVoice("鳴き声を入力してください: ", (input: string) => {
-	const result = voiceCounter.incrementAnimal(input);
-	voiceResultHandler.handleResult(result);
+	const animalEvent = animalJudge.judge(input);
+	const updatedRecord = voiceCounter.increment(animalEvent);
+	voiceResultHandler.handleResult({
+		record: updatedRecord,
+		updatedAnimal: animalEvent,
+	});
 });

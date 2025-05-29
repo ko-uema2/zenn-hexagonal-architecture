@@ -1,5 +1,12 @@
 export type RecordType = { dog: number; cat: number; unknown: number };
 
+export enum AnimalEvent {
+	Dog = "Dog",
+	Cat = "Cat",
+	Unknown = "Unknown",
+}
+
+// recordを更新する責務
 export class VoiceCounter {
 	private record: RecordType;
 
@@ -7,36 +14,10 @@ export class VoiceCounter {
 		this.record = record;
 	}
 
-	// 鳴き声から動物種別を判定（privateメソッド化）
-	private judgeAnimal(input: string): keyof RecordType {
-		if (
-			input === "ワン" ||
-			input === "わんわん" ||
-			input === "ワンワン" ||
-			input === "わん"
-		) {
-			return "dog";
-		}
-
-		if (
-			input === "ニャン" ||
-			input === "にゃん" ||
-			input === "にゃんにゃん" ||
-			input === "にゃーん"
-		) {
-			return "cat";
-		}
-
-		return "unknown";
-	}
-
-	// recordを更新（鳴き声を直接受け取り、内部でjudgeAnimalを利用）
-	incrementAnimal(input: string): {
-		record: RecordType;
-		updatedAnimal: keyof RecordType;
-	} {
-		const animal = this.judgeAnimal(input);
-		this.record[animal] += 1;
-		return { record: { ...this.record }, updatedAnimal: animal };
+	increment(animalEvent: AnimalEvent): RecordType {
+		if (animalEvent === AnimalEvent.Dog) this.record.dog += 1;
+		else if (animalEvent === AnimalEvent.Cat) this.record.cat += 1;
+		else this.record.unknown += 1;
+		return { ...this.record };
 	}
 }

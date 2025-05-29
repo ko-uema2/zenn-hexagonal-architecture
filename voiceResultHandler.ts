@@ -1,4 +1,5 @@
 import type { RecordStorage } from "./recordStorage";
+import { AnimalEvent } from "./voiceCounter";
 import type { RecordType } from "./voiceCounter";
 import type { VoiceInterface } from "./voiceInterface";
 
@@ -11,11 +12,8 @@ export class VoiceResultHandler {
 		this.recordStorage = recordStorage;
 	}
 
-	handleResult(result: {
-		record: RecordType;
-		updatedAnimal: keyof RecordType;
-	}) {
-		if (result.updatedAnimal === "unknown") {
+	handleResult(result: { record: RecordType; updatedAnimal: AnimalEvent }) {
+		if (result.updatedAnimal === AnimalEvent.Unknown) {
 			this.voiceInterface.playSound("知らない鳴き声を受け取りました");
 		}
 		this.recordStorage.save(result.record);
