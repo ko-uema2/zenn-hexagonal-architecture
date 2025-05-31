@@ -1,6 +1,7 @@
 import { AnimalJudge } from "./animalJudge";
+import { animalJudgePolicy } from "./animalJudgePolicy";
 import { RecordStorage } from "./recordStorage";
-import { AnimalEvent, VoiceCounter } from "./voiceCounter";
+import { VoiceCounter } from "./voiceCounter";
 import { VoiceInterface } from "./voiceInterface";
 import { VoiceResultHandler } from "./voiceResultHandler";
 
@@ -8,7 +9,7 @@ const voiceInterface = new VoiceInterface();
 const RECORD_FILE = "./storage/record.json";
 const recordStorage = new RecordStorage(RECORD_FILE);
 const record = recordStorage.load();
-const animalJudge = new AnimalJudge();
+const animalJudge = new AnimalJudge(animalJudgePolicy);
 const voiceCounter = new VoiceCounter(record);
 const voiceResultHandler = new VoiceResultHandler(
 	voiceInterface,

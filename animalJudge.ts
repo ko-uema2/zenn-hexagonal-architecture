@@ -1,23 +1,19 @@
+import type { AnimalJudgePolicy } from "./animalJudgePolicy";
 import { AnimalEvent } from "./voiceCounter";
 
-// 鳴き声から動物種別を判定する責務
+// 鳴き声から動物種別を判定する責務（ポリシーパターン適用）
 export class AnimalJudge {
+	private policy: AnimalJudgePolicy;
+
+	constructor(policy: AnimalJudgePolicy) {
+		this.policy = policy;
+	}
+
 	judge(input: string): AnimalEvent {
-		if (
-			input === "ワン" ||
-			input === "わんわん" ||
-			input === "ワンワン" ||
-			input === "わん"
-		) {
-			return AnimalEvent.Dog;
-		}
-		if (
-			input === "ニャン" ||
-			input === "にゃん" ||
-			input === "にゃんにゃん" ||
-			input === "にゃーん"
-		) {
-			return AnimalEvent.Cat;
+		for (const animal of Object.values(AnimalEvent)) {
+			if (this.policy[animal]?.includes(input)) {
+				return animal;
+			}
 		}
 		return AnimalEvent.Unknown;
 	}
