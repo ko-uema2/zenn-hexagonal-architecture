@@ -1,4 +1,4 @@
-import { AnimalEvent } from "./voiceCounter";
+import { AnimalEvent } from "./animalJudge";
 
 // 鳴き声判定ルールの型（ポリシーオブジェクト）
 export type AnimalJudgePolicy = {

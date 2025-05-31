@@ -1,5 +1,10 @@
 import type { AnimalJudgePolicy } from "./animalJudgePolicy";
-import { AnimalEvent } from "./voiceCounter";
+
+export enum AnimalEvent {
+	Dog = "dog",
+	Cat = "cat",
+	Unknown = "unknown",
+}
 
 // 鳴き声から動物種別を判定する責務（ポリシーパターン適用）
 export class AnimalJudge {

@@ -1,6 +1,6 @@
+import { AnimalEvent } from "./animalJudge";
+import type { RecordType } from "./recordHolder";
 import type { RecordStorage } from "./recordStorage";
-import { AnimalEvent } from "./voiceCounter";
-import type { RecordType } from "./voiceCounter";
 import type { VoiceInterface } from "./voiceInterface";
 
 export class VoiceResultHandler {
