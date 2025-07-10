@@ -1,0 +1,116 @@
+<mxfile host="65bd71144e">
+    <diagram name="クラス依存関係図" id="class-dependency-diagram">
+        <mxGraphModel dx="576" dy="1198" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="main" value="main.ts" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e8f5e8;strokeColor=#2e7d32;strokeWidth=2;" parent="1" vertex="1">
+                    <mxGeometry x="525" y="50" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="animalJudge" value="AnimalJudge" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#01579b;strokeWidth=2;" parent="1" vertex="1">
+                    <mxGeometry x="340" y="200" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="recordHolder" value="RecordHolder" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#01579b;strokeWidth=2;" parent="1" vertex="1">
+                    <mxGeometry x="180" y="200" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="animalEvent" value="AnimalEvent" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1f5fe;strokeColor=#01579b;strokeWidth=2;" parent="1" vertex="1">
+                    <mxGeometry x="524.5" y="200" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="voiceInterface" value="VoiceInterface" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;strokeColor=#4a148c;strokeWidth=2;" parent="1" vertex="1">
+                    <mxGeometry x="1060" y="200" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="recordStorage" value="RecordStorage" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;strokeColor=#4a148c;strokeWidth=2;" parent="1" vertex="1">
+                    <mxGeometry x="900" y="280" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="voiceResultHandler" value="VoiceResultHandler" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f3e5f5;strokeColor=#4a148c;strokeWidth=2;" parent="1" vertex="1">
+                    <mxGeometry x="710" y="200" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="animalJudgePolicy" value="animalJudgePolicy" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#616161;strokeWidth=1;" parent="1" vertex="1">
+                    <mxGeometry x="340" y="414" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="recordType" value="RecordType" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f9f9f9;strokeColor=#616161;strokeWidth=1;" parent="1" vertex="1">
+                    <mxGeometry x="710" y="340" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="fileSystem" value="ファイルシステム" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#e65100;strokeWidth=2;" parent="1" vertex="1">
+                    <mxGeometry x="1250" y="280" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="stdio" value="標準入出力" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff3e0;strokeColor=#e65100;strokeWidth=2;" parent="1" vertex="1">
+                    <mxGeometry x="1250" y="200" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge1" parent="1" source="main" target="animalJudge" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="400" y="80"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge2" parent="1" source="main" target="recordHolder" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="240" y="80"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge3" parent="1" source="main" target="voiceInterface" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="1120" y="80"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge4" parent="1" source="main" target="recordStorage" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="960" y="80"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge5" parent="1" source="main" target="voiceResultHandler" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="770" y="80"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge6" parent="1" source="animalJudge" target="animalJudgePolicy" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge7" parent="1" source="animalJudge" target="animalEvent" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge8" parent="1" source="recordHolder" target="recordType" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="240" y="370"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="edge9" parent="1" source="voiceResultHandler" target="voiceInterface" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge10" parent="1" source="voiceResultHandler" target="recordStorage" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge11" parent="1" source="voiceResultHandler" target="animalEvent" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge12" parent="1" source="voiceResultHandler" target="recordType" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge13" parent="1" source="voiceInterface" target="stdio" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge14" parent="1" source="recordStorage" target="fileSystem" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="edge15" parent="1" source="recordStorage" target="recordType" edge="1">
+                    <mxGeometry relative="1" as="geometry">
+                        <Array as="points">
+                            <mxPoint x="960" y="370"/>
+                        </Array>
+                    </mxGeometry>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
