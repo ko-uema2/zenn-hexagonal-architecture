@@ -19,7 +19,7 @@
 - 判定結果に応じて、`record.json` ファイルの `dog`, `cat`, `unknown` の値を更新する。
 - 判定結果が `unknown` の場合は、標準出力に「知らない鳴き声を受け取りました」と表示する。
 
-```markdown:instruction.md
+```markdown
 ## 開発指示
 
 ### 概要
@@ -47,7 +47,7 @@
 
 そして、生成されたコードは以下の通りです。
 
-```typescript:main.ts
+```typescript
 import * as fs from "node:fs";
 import * as readline from "node:readline";
 
@@ -238,7 +238,7 @@ rl.question("鳴き声を入力してください: ", (answer) => {
 
 #### 標準入出力の分離
 
-```typescript:voiceInterface.ts
+```typescript
 import * as readline from "node:readline";
 
 export class VoiceInterface {
@@ -261,7 +261,7 @@ export class VoiceInterface {
 
 #### ファイルI/Oの分離
 
-```typescript:recordStorage.ts
+```typescript
 import * as fs from "node:fs";
 
 export type RecordType = { dog: number; cat: number; unknown: number };
@@ -293,7 +293,7 @@ export class RecordStorage {
 
 外部依存を切り出した後の`main.ts`は以下のようになります：
 
-```typescript:main.ts
+```typescript
 import { VoiceInterface } from "./voiceInterface";
 import { RecordStorage } from "./recordStorage";
 
@@ -337,7 +337,7 @@ voiceInterface.hearVoice("鳴き声を入力してください: ", (input: strin
 
 #### 動物判定ロジックの分離
 
-```typescript:animalJudge.ts
+```typescript
 export enum AnimalEvent {
   Dog = "dog",
   Cat = "cat",
@@ -372,7 +372,7 @@ export class AnimalJudge {
 
 #### カウント更新ロジックの分離
 
-```typescript:recordHolder.ts
+```typescript
 export type RecordType = { dog: number; cat: number; unknown: number };
 
 // record.json に格納されているレコードを保持し、値をインクリメントする責務を担うクラス
@@ -406,7 +406,7 @@ export class RecordHolder {
 
 これにより、ドメイン層は外部システムの詳細を知ることなく、純粋にビジネスロジックに集中できます。
 
-```typescript:voiceResultHandler.ts
+```typescript
 import { VoiceInterface } from "./voiceInterface";
 import { RecordStorage, RecordType } from "./recordStorage";
 import { AnimalEvent } from "./animalJudge";
@@ -438,7 +438,7 @@ export class VoiceResultHandler {
 
 判定ルールを外部化することで、拡張性とテスト容易性を向上させました。
 
-```typescript:animalJudgePolicy.ts
+```typescript
 export type AnimalJudgePolicy = {
   [animal in AnimalEvent]?: string[];
 };
@@ -449,7 +449,7 @@ export const animalJudgePolicy: AnimalJudgePolicy = {
 };
 ```
 
-```typescript:animalJudge.ts
+```typescript
 export class AnimalJudge {
   private policy: AnimalJudgePolicy;
 
@@ -476,7 +476,7 @@ export class AnimalJudge {
 
 リファクタリング後のアーキテクチャは以下のようになります：
 
-```typescript:main.ts
+```typescript
 import { AnimalJudge } from "./animalJudge";
 import { animalJudgePolicy } from "./animalJudgePolicy";
 import { RecordHolder } from "./recordHolder";
